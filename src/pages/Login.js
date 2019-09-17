@@ -34,6 +34,13 @@ function Login(props) {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [messageInfo, setMessageInfo] = useState({});
 
+  function processQueue() {
+    if (messageQueue.length > 0) {
+      setMessageInfo(messageQueue.shift());
+      setShowSnackbar(true);
+    }
+  }
+
   function showMessage(message) {
     messageQueue.push({
       // eslint-disable-next-line no-plusplus
@@ -45,13 +52,6 @@ function Login(props) {
       setShowSnackbar(false);
     } else {
       processQueue();
-    }
-  }
-
-  function processQueue() {
-    if (messageQueue.length > 0) {
-      setMessageInfo(messageQueue.shift());
-      setShowSnackbar(true);
     }
   }
 
@@ -70,7 +70,6 @@ function Login(props) {
   async function loginResponse({ tokenId, profileObj }) {
     if (tokenId) {
       const { name, email } = profileObj;
-      console.log(profileObj, name, email);
       const { ok, unauthorized, forbidden, status, text: token, body } = await request
         .post('/users/verify')
         .ok(res => res.status < 500)
@@ -144,13 +143,13 @@ function Login(props) {
         </Typography>
         <GoogleLogin
           className={classes.margin}
-          clientId="850718226563-53acf0gfdhhc8dtk9c0h9cjt5ntiagfv.apps.googleusercontent.com"
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           buttonText="Log in with your uOttawa email"
           hostedDomain="uottawa.ca"
           onSuccess={loginResponse}
           onFailure={loginResponse}
         />
-        {props.location.state &&
+        {props.location.state && (
           <Snackbar
             key={messageInfo.key}
             anchorOrigin={{
@@ -165,7 +164,7 @@ function Login(props) {
             }}
             message={<span id="message-id">{messageInfo.message}</span>}
           />
-        }
+        )}
       </div>
     );
   }
@@ -174,7 +173,7 @@ function Login(props) {
     return (
       <MessageCard
         className={classes.root}
-        message={`Sorry ${name}! You're not on the list of valid voters. If you believe this is a mistake, email rushil.perera1081@gmail.com`}
+        message={`Sorry ${name}! You're not on the list of valid voters. If you believe this is a mistake, email ${process.env.REACT_APP_CONTACT_EMAIL}`}
         actions={[
           <Button key="okay-btn" color="secondary" onClick={reset}>Okay</Button>,
         ]}

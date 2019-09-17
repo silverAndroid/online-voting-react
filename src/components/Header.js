@@ -7,11 +7,16 @@ import logo from '../uottawa_branch_logo-1.png';
 
 const useStyles = makeStyles({
   root: {
-    padding: '32px 0',
+    padding: '16px 0',
   },
   link: {
     flexGrow: 1,
   },
+  logo: {
+    maxHeight: 75,
+    display: 'flex',
+    justifyContent: 'space-between',
+  }
 });
 
 export default function Header() {
@@ -23,11 +28,7 @@ export default function Header() {
           <img
             src={logo}
             alt="IEEE uOttawa Logo"
-            style={{
-              maxHeight: 60,
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
+            className={classes.logo}
           />
         </a>
       </Toolbar>
