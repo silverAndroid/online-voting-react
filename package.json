@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "^7.6.0",
     "@bugsnag/js": "^6.4.0",
     "@bugsnag/plugin-react": "^6.4.0",
     "@material-ui/core": "^3.9.0",
@@ -18,20 +19,26 @@
     "superagent-use": "^0.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "parcel --port 3000 public/index.html",
+    "build": "parcel build public/index.html",
+    "prebuild": "rm -rf ./dist",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "env": "sync-dotenv",
     "firebase": "firebase"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.4",
     "firebase-tools": "^7.3.2",
     "nodemon": "^1.18.9",
+    "parcel-bundler": "^1.12.3",
     "react-scripts": "^3.0.1",
     "sync-dotenv": "^2.2.1"
   },

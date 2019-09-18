@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 
-import Login from './Login';
-import Vote from './Vote';
-import CanVote from './CanVote';
 import Header from '../components/Header';
+import MessageCard from '../components/MessageCard';
+
+const Login = lazy(() => import('./Login'));
+const Vote = lazy(() => import('./Vote'));
+const CanVote = lazy(() => import('./CanVote'));
 
 const useStyles = makeStyles({
   root: {
@@ -22,11 +24,13 @@ const App = () => {
         <Header />
 
         <div className={classes.root}>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/vote" component={Vote} />
-            <Route component={CanVote} />
-          </Switch>
+          <Suspense fallback={<MessageCard message="Loading..." />}>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/vote" component={Vote} />
+              <Route component={CanVote} />
+            </Switch>
+          </Suspense>
         </div>
       </>
     </Router>
