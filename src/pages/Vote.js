@@ -14,7 +14,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 import { Redirect } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
 
+import config from '../config';
 import request from '../network';
 import MessageCard from '../components/MessageCard';
 import AlreadyVotedCard from '../components/AlreadyVotedCard';
@@ -38,6 +40,7 @@ const useStyles = makeStyles({
 });
 
 function Vote() {
+  const { t } = useTranslation('Vote');
   const [canVote, setCanVote] = useState(true);
   const [canVoteBody, setCanVoteBody] = useState(undefined);
   const [hasAlreadyVoted, setAlreadyVoted] = useState(false);
@@ -137,7 +140,7 @@ function Vote() {
 
   async function submitVote() {
     closeConfirmationDialog();
-    showMessage('Submitting vote...');
+    showMessage(t('submit'));
     const { ok, unauthorized, status, body } = await request
       .post('/vote/submit')
       .ok(res => res.status < 500)
@@ -159,10 +162,10 @@ function Vote() {
         setCanVoteBody(body);
         setCanVote(false);
       } else {
-        showMessage('Failed to submit vote! Please wait a few minutes before trying again...');
+        showMessage(t('submitFail'));
       }
     } catch (e) {
-      showMessage('Failed to submit vote! Please wait a few minutes before trying again...');
+      showMessage(t('submitFail'));
     }
   }
 
@@ -191,7 +194,7 @@ function Vote() {
     return (
       <div>
         <CircularProgress />
-        <MessageCard message="Loading..." />
+        <MessageCard message={t('global:loading')} />
       </div>
     );
   }
@@ -203,7 +206,7 @@ function Vote() {
         to={{
           pathname: '/login',
           state: {
-            message: 'Your session has expired! Please log in again to submit your vote.',
+            message: t('sessionExpired'),
           },
         }}
       />
@@ -225,29 +228,28 @@ function Vote() {
   return (
     <>
       <Typography className={classes.instructions} variant="body1" gutterBottom>
-        If you are confident that any of the candidates are not going to do well in the position they are running for, select
-        {' '}
-        <strong>No Confidence.</strong>
-        {' '}
-        If you would rather not vote for any of the candidates for a certain position for any other reason, select
-        {' '}
-        <strong>Abstain.</strong>
+        <Trans i18nKey="informationalHeader" ns="Vote">
+          text
+          <strong>bold</strong>
+          text
+          <strong>bold</strong>
+        </Trans>
       </Typography>
       <Card className={classes.root}>
-        <CardHeader className={classes.title} title="Vote for your next ..." />
+        <CardHeader className={classes.title} title={t('voteNextHeader')} />
         <CardContent>
           <FormControl component="fieldset">
             {
               Object.entries(candidatesObj)
                 .map(([position, candidates], index) => (
                   <div key={position}>
-                    <FormLabel key={`${position}-header`} component="legend" className={index > 0 ? classes.subHeader : ''}>{position}</FormLabel>
+                    <FormLabel key={`${position}-header`} component="legend" className={index > 0 ? classes.subHeader : ''}>{t(`position:${position}`)}</FormLabel>
                     <RadioGroup aria-label={position} name={position} value={selected[position].id.toString()} onChange={handleChange}>
                       {candidates.map(({ id, name }) => (
                         <FormControlLabel
                           key={`${position}-${name}`}
                           control={<Radio color="secondary" />}
-                          label={name}
+                          label={config.translateNames.some(translateName => translateName === name) ? t(name) : name}
                           value={id.toString()}
                         />
                       ))}
@@ -259,7 +261,7 @@ function Vote() {
         </CardContent>
         <CardActions>
           <Button size="small" color="secondary" onClick={() => handleShowConfirmationDialog()}>
-            Submit
+            {t('submitAction')}
           </Button>
         </CardActions>
       </Card>

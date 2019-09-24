@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 
 import MessageCard from '../components/MessageCard';
 import request from '../network';
 
 export default function CanVote(props) {
+  const { t } = useTranslation('CanVote');
+
   const [isLoading, setLoading] = useState(true);
   const [votingNotStarted, setNotStarted] = useState(false);
   const [votingEnded, setClosed] = useState(false);
@@ -16,7 +19,7 @@ export default function CanVote(props) {
       const { notStarted, isClosed, date: voteDate } = state;
       setNotStarted(notStarted);
       setClosed(isClosed);
-      setDate(dayjs(voteDate).format('MMMM D [at] h:mm A'));
+      setDate(dayjs(voteDate).format(t('dateFormat')));
     };
 
     if (!props.location.state) {
@@ -33,14 +36,14 @@ export default function CanVote(props) {
   }, [props.location.state]);
 
   if (isLoading) {
-    return <MessageCard title="Is the voting system open?" message="Loading..." />;
+    return <MessageCard title={t('votingSystemOpen')} message={t('global:loading')} />;
   }
 
   if (votingNotStarted) {
-    return <MessageCard message={`Voting begins on ${date}`} title="Is the voting system open?" />;
+    return <MessageCard message={t('votingStarts', { date })} title={t('votingSystemOpen')} />;
     // eslint-disable-next-line no-else-return
   } else if (votingEnded) {
-    return <MessageCard message={`Voting ended on ${date}`} title="Is the voting system open?" />;
+    return <MessageCard message={t('votingEnds', { date })} title={t('votingSystemOpen')} />;
   } else {
     return <Redirect to="/login" />;
   }

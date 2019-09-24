@@ -1,12 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import MessageCard from './MessageCard';
 
-export default function AlreadyVotedCard() {
+export default function SuccessfullyVotedCard() {
+  const { t } = useTranslation('MessageCard');
   return (
     <MessageCard
-      title="Thanks for voting!"
-      message="Thanks for voting in this election! 😊😄😁"
+      title={t('global:thankVoting')}
+      message={t('thankVoting')}
     />
   );
 }

@@ -16,11 +16,12 @@ const useStyles = makeStyles({
     maxHeight: 75,
     display: 'flex',
     justifyContent: 'space-between',
-  }
+  },
 });
 
 export default function Header() {
   const classes = useStyles();
+
   return (
     <AppBar position="sticky" className={classes.root}>
       <Toolbar>
