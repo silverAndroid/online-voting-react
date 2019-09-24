@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/styles';
 
-import logo from '../uottawa_branch_logo-1.png';
+import logo from '../logo.png';
 
 const useStyles = makeStyles({
   root: {
