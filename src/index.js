@@ -9,6 +9,7 @@ import bugsnagReact from '@bugsnag/plugin-react';
 
 import App from './pages/App';
 
+import './i18n';
 import './index.css';
 
 const bugsnagClient = bugsnag(process.env.REACT_APP_BUGSNAG_API_KEY);

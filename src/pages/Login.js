@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import { makeStyles } from '@material-ui/styles';
+import { useTranslation, Trans } from 'react-i18next';
 
 import request from '../network';
 import AlreadyVotedCard from '../components/AlreadyVotedCard';
@@ -20,6 +21,7 @@ const useStyles = makeStyles({
 });
 
 function Login(props) {
+  const { t } = useTranslation('Login');
   const [canVote, setCanVote] = useState(true);
   const [canVoteBody, setCanVoteBody] = useState(undefined);
   const [hasAlreadyVoted, setAlreadyVoted] = useState(false);
@@ -134,17 +136,18 @@ function Login(props) {
     return (
       <div className={classes.root}>
         <Typography variant="body1" component="p" gutterBottom>
-          We take voter anonymity very seriously. We only ask you to log in with your uOttawa email to let us know that you have voted but
-          {' '}
-          <strong>we can never trace back to who you voted for.</strong>
+          <Trans i18nKey="voterAnonymity" ns="Login">
+            We take voter anonymity very seriously. We only ask you to log in with your uOttawa email to let us know that you have voted but
+            <strong>we can never trace back to who you voted for.</strong>
+          </Trans>
         </Typography>
         <Typography className={classes.margin} variant="body1" component="p" gutterBottom>
-          We recommend viewing this website through Mozilla Firefox, Google Chrome (or a browser based on Chromium), Microsoft Edge or Safari.
+          {t('browsers')}
         </Typography>
         <GoogleLogin
           className={classes.margin}
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          buttonText="Log in with your uOttawa email"
+          buttonText={t('login')}
           hostedDomain="uottawa.ca"
           onSuccess={loginResponse}
           onFailure={loginResponse}
@@ -173,9 +176,9 @@ function Login(props) {
     return (
       <MessageCard
         className={classes.root}
-        message={`Sorry ${name}! You're not on the list of valid voters. If you believe this is a mistake, email ${process.env.REACT_APP_CONTACT_EMAIL}`}
+        message={t('invalidVoter', { name, contactEmail: process.env.REACT_APP_CONTACT_EMAIL })}
         actions={[
-          <Button key="okay-btn" color="secondary" onClick={reset}>Okay</Button>,
+          <Button key="okay-btn" color="secondary" onClick={reset}>{t('okay')}</Button>,
         ]}
       />
     );
@@ -185,9 +188,9 @@ function Login(props) {
     return (
       <MessageCard
         className={classes.root}
-        message={`Sorry, ${name}! ${email} is an invalid email, please sign in with your uOttawa email.`}
+        message={t('invalidEmail', { name, email })}
         actions={[
-          <Button key="okay-btn" color="secondary" onClick={reset}>Okay</Button>,
+          <Button key="okay-btn" color="secondary" onClick={reset}>{t('okay')}</Button>,
         ]}
       />
     );

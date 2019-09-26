@@ -1,0 +1,6 @@
+{
+  "votingSystemOpen": "Is the voting system open?",
+  "votingStarts": "Voting begins on {{date}}",
+  "votingEnds": "Voting ends on {{date}}",
+  "dateFormat": "MMMM D [at] h:mm A"
+}
