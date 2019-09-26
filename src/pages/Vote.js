@@ -154,7 +154,7 @@ function Vote() {
       if (ok) {
         localStorage.removeItem('token');
         setSuccessfullyVoted(true);
-      } else if (unauthorized) {
+      } else if (unauthorized || status === 403) {
         setSessionValid(false);
       } else if (status === 409) {
         setAlreadyVoted(true);
