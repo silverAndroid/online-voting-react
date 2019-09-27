@@ -5,7 +5,10 @@
   ],
   "plugins": [
     [
-      "@babel/transform-runtime"
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 3
+      }
     ]
   ]
 }
