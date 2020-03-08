@@ -1,0 +1,8 @@
+{
+  "voterAnonymity": "Nous accordons une grande importance à l’anonymat. Nous demandons simplement que vous utilisez votre adresse courriel d’uOttawa pour ouvrir une session, mais <1>nous avons aucun moyen de retracer votre choix de vote.</1>",
+  "browsers": "Il est recommandé d’utiliser un navigateur tel que Mozilla Firefox, Google Chrome (ou un autre navigateur basé sur Chromium), Microsoft Edge ou Safari.",
+  "login": "Ouvrir une session avec votre adresse courriel",
+  "invalidVoter": "Désolé {{name}}! Votre nom n’existe pas sur notre liste de voteurs valides. Si vous croyez qu’il y a une erreur, envoyez un courriel à {{contactEmail}}",
+  "invalidEmail": "Désolé {{name}}! {{email}} est un courriel invalide, S.V.P ouvrir une session avec votre adresse courriel d’uOttawa.",
+  "okay": "D’accord"
+}

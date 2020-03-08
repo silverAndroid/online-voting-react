@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node src/server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node src/server.js"
   },
   "dependencies": {
     "@bugsnag/js": "^6.5.2",

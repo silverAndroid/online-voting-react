@@ -1,0 +1,8 @@
+{
+  "voterAnonymity": "We take voter anonymity very seriously. We only ask you to log in with your uOttawa email to let us know that you have voted but <1>we can never trace back to who you voted for.</1>",
+  "browsers": "We recommend viewing this website through Mozilla Firefox, Google Chrome (or a browser based on Chromium), Microsoft Edge or Safari.",
+  "login": "Log in with your uOttawa email",
+  "invalidVoter": "Sorry {{name}}! You're not on the list of valid voters. If you believe this is a mistake, email {{contactEmail}}",
+  "invalidEmail": "Sorry, {{name}}! {{email}} is an invalid email, please sign in with your uOttawa email.",
+  "okay": "Okay"
+}

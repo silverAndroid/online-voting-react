@@ -1,7 +1,15 @@
-import Header from '../components/Header'
+import Header from '../components/Header';
+import AlreadyVotedCard from '../components/AlreadyVotedCard';
 
 const Home = () => (
-  <Header />
+  <>
+    <Header />
+    <AlreadyVotedCard />
+  </>
 )
 
-export default Home
+Home.getInitialProps = () => ({
+  namespacesRequired: ['MessageCard']
+});
+
+export default Home;
