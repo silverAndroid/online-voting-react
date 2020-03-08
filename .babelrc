@@ -1,5 +1,5 @@
 {
-  "presets": ["next/babel", "@emotion/babel-preset-css-prop"],
+  "presets": ["next/babel", "@emotion/babel-preset-css-prop", "@babel/preset-flow"],
   "env": {
     "production": {
       "plugins": ["emotion", "@babel/plugin-proposal-optional-chaining"]
