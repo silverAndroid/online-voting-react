@@ -25,6 +25,7 @@ import { useTranslation, Trans } from '../i18n';
 import { deleteToken, getToken } from '../helpers/auth';
 import { redirect } from '../helpers/router';
 import { useSnackbar } from '../hooks/snackbar';
+import { withTranslation } from '../hoc/Translation';
 
 function Vote({ fetch, candidatesObj }) {
   const { t } = useTranslation('Vote');
@@ -231,9 +232,7 @@ Vote.getInitialProps = async ({ req, res }) => {
     redirect('/login', res);
   }
 
-  return {
-    namespacesRequired: ['Vote']
-  }
+  return {};
 };
 
 async function getCandidates({ fetch }) {
@@ -252,5 +251,5 @@ async function getCandidates({ fetch }) {
 }
 
 export default withApi(
-  withApi(withCanVote(Vote))('/vote/candidates', getCandidates),
+  withApi(withTranslation(withCanVote(Vote))('Vote'))('/vote/candidates', getCandidates)
 )('');
