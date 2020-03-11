@@ -4,5 +4,7 @@
   "login": "Ouvrir une session avec votre adresse courriel",
   "invalidVoter": "Désolé {{name}}! Votre nom n’existe pas sur notre liste de voteurs valides. Si vous croyez qu’il y a une erreur, envoyez un courriel à {{contactEmail}}",
   "invalidEmail": "Désolé {{name}}! {{email}} est un courriel invalide, S.V.P ouvrir une session avec votre adresse courriel d’uOttawa.",
+  "sessionExpired": "Votre session est expirée! S.V.P. ouvrir une nouvelle session pour soumettre votre vote.",
+  "alreadyLoggedIn": "Vous êtes déjà connecté! Redirection...",
   "okay": "D’accord"
 }

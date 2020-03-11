@@ -2,7 +2,6 @@
   "submit": "Soumission de vote...",
   "submitAction": "Soumettre",
   "submitFail": "Erreur lors de la soumission de vote! S.V.P. attendre quelques minutes avant de réessayer...",
-  "sessionExpired": "Votre session est expirée! S.V.P. ouvrir une nouvelle session pour soumettre votre vote.",
   "informationalHeader": "Si vous êtes d’avis que tous les candidats sont mal choisis pour la position en question, sélectionner <1>Non</1>. Si vous préférez ne pas voter pour un des candidats pour une autre raison, sélectionner <3>Abstention</3>.",
   "voteNextHeader": "Votez pour votre prochain ...",
   "Yes": "Oui",
