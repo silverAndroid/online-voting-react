@@ -4,5 +4,7 @@
   "login": "Log in with your uOttawa email",
   "invalidVoter": "Sorry {{name}}! You're not on the list of valid voters. If you believe this is a mistake, email {{contactEmail}}",
   "invalidEmail": "Sorry, {{name}}! {{email}} is an invalid email, please sign in with your uOttawa email.",
+  "sessionExpired": "Your session has expired! Please log in again to submit your vote.",
+  "alreadySignedIn": "You've already logged in! Redirecting...",
   "okay": "Okay"
 }

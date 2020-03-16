@@ -2,6 +2,7 @@ import { withApi } from './Api';
 import { redirect } from '../helpers/router';
 
 export function withCanVote(Page) {
+  console.log('withCanVote');
   async function checkifVotingOpen({ fetch, ctx: { res } }) {
     const response = await fetch();
 

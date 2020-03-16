@@ -2,7 +2,6 @@
   "submit": "Submitting vote...",
   "submitAction": "Submit",
   "submitFail": "Failed to submit vote! Please wait a few minutes before trying again...",
-  "sessionExpired": "Your session has expired! Please log in again to submit your vote.",
   "informationalHeader": "If you are confident that any of the candidates are not going to do well in the position they are running for, select <1>No Confidence.</1> If you would rather not vote for any of the candidates for a certain position for any other reason, select <3>Abstain</3>.",
   "voteNextHeader": "Vote for your next ..."
 }

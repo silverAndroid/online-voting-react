@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 type MessageCardProps = {
   message: string,
   title?: string,
-  actions?: React.Component<{}, {}>[];
+  actions?: React.ReactElement[];
 }
 
 export default function MessageCard({ message, title, actions }: MessageCardProps) {

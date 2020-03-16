@@ -1,3 +1,4 @@
+import React from 'react';
 import unfetch from 'isomorphic-unfetch';
 
 import { getApiUrl } from '../helpers/api';
@@ -11,6 +12,7 @@ export interface ApiProps {
 
 export function withApi(Page: any) {
   return (path: string, loadData?: ({ ctx, fetch }) => Promise<any>) => {
+    console.log('withApi');
     const apiUrl = getApiUrl(path);
     if (process.env.NODE_ENV === 'development') console.log(apiUrl);
 
@@ -34,13 +36,14 @@ export function withApi(Page: any) {
       let data;
 
       if (loadData) {
+        console.log('withApi', 'loadData');
         const { req } = ctx;
         const fetch = easyFetch(req);
 
         data = await loadData({ ctx, fetch, ...componentProps });
       }
 
-      return { ...componentProps, data, namespacesRequired: [] };
+      return { ...componentProps, data, namespacesRequired: componentProps.namespacesRequired || [] };
     };
 
     return ApiWrapper;
